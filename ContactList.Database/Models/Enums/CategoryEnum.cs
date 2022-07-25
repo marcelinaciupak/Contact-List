@@ -1,8 +1,8 @@
-﻿namespace ContactList.Data.Models.Enums
+﻿namespace ContactList.Database.Models.Enums
 {
     public enum CategoryEnum
     {
-        Business =1,
+        Business = 1,
         Private,
         Other
     }

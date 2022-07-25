@@ -1,4 +1,4 @@
-﻿using ContactList.Data.Models.Enums;
+﻿using ContactList.Database.Models.Enums;
 
 namespace ContactList.Domain.Models
 {

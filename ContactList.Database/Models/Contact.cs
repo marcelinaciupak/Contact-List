@@ -1,6 +1,6 @@
-﻿using ContactList.Data.Models.Enums;
+﻿using ContactList.Database.Models.Enums;
 
-namespace ContactList.Data.Models
+namespace ContactList.Database.Models
 {
     public class Contact
     {
@@ -9,7 +9,7 @@ namespace ContactList.Data.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public CategoryEnum Category { get; set; }
-        public string Phone { get; set;}
+        public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
         public int UserID { get; set; }
     }
