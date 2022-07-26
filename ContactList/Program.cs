@@ -1,18 +1,29 @@
+using ContactList;
 using ContactList.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+// Add services to the container.
+//builder.Services.AddRazorPages();
+
+
 // Register the Swagger generator
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper((config) => { }, AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ContactListContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.RegisterServices();
+builder.Services.RegisterRepositories();
+builder.Services.RegisterValidators();
 
 var app = builder.Build();
 
@@ -34,6 +45,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+//app.MapRazorPages();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

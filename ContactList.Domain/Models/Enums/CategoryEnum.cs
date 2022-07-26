@@ -1,4 +1,4 @@
-﻿namespace ContactList.Database.Models.Enums
+﻿namespace ContactList.Domain.Models.Enums
 {
     public enum CategoryEnum
     {
