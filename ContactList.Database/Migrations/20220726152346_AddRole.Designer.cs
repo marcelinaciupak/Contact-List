@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactList.Database.Migrations
 {
     [DbContext(typeof(ContactListContext))]
-    [Migration("20220726150346_AddApplicationUser")]
-    partial class AddApplicationUser
+    [Migration("20220726152346_AddRole")]
+    partial class AddRole
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,6 +160,15 @@ namespace ContactList.Database.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e8ae827d-bff4-4f27-8855-ac25d1523cf0",
+                            ConcurrencyStamp = "48613919-886a-450d-9a01-ae5efe763b4d",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

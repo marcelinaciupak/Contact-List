@@ -25,7 +25,17 @@ builder.Services.AddDbContext<ContactListContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
 {
     config.SignIn.RequireConfirmedEmail = true;
-}).AddEntityFrameworkStores<ContactListContext>();
+}).AddEntityFrameworkStores<ContactListContext>()
+  .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+});
 
 builder.Services.RegisterServices();
 builder.Services.RegisterRepositories();
@@ -50,8 +60,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
-//app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
