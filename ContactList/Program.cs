@@ -1,5 +1,7 @@
 using ContactList;
 using ContactList.Database;
+using ContactList.Database.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,10 @@ builder.Services.AddDbContext<ContactListContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+{
+    config.SignIn.RequireConfirmedEmail = true;
+}).AddEntityFrameworkStores<ContactListContext>();
 
 builder.Services.RegisterServices();
 builder.Services.RegisterRepositories();
