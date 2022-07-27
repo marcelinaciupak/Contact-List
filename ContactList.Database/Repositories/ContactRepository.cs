@@ -33,11 +33,18 @@ namespace ContactList.Database.Repositories
             return _mapper.Map<ContactDto>(contact);
         }
 
-        public async Task<List<ContactDto>> GetAllAsync()
+        public async Task<List<ContactDto>> GetByUserIdAsync(string userId)
+        {
+            var contacts = await _context.Contacts.Where(x => x.UserId == userId).ToListAsync();
+
+            return _mapper.Map<List<ContactDto>>(contacts);
+        }
+
+        public async Task<List<ContactDisplayListDto>> GetAllAsync()
         {
             var contacts = await _context.Contacts.ToListAsync();
 
-            return _mapper.Map<List<ContactDto>>(contacts);
+            return _mapper.Map<List<ContactDisplayListDto>>(contacts);
         }
 
         public async Task<ContactDto> UpdateAsync(ContactDto contactDto)

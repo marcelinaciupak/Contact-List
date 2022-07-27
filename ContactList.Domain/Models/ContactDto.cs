@@ -11,6 +11,6 @@ namespace ContactList.Domain.Models
         public CategoryEnum Category { get; set; }
         public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
-        public int UserID { get; set; }
+        public string UserId { get; set; }
     }
 }

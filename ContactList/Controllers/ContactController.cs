@@ -8,7 +8,7 @@ namespace ContactList.Controllers
     [Route("[controller]")]
     [ApiController]
 
-    public class ContactController : ControllerBase
+    public class ContactController : Controller
     {
         private readonly IContactService _contactService;
 
@@ -17,8 +17,8 @@ namespace ContactList.Controllers
             _contactService = contactService;
         }
 
-        [HttpPost]
         [Authorize(Roles = "User")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -39,6 +39,17 @@ namespace ContactList.Controllers
         {
             var contact = await _contactService.GetByIdAsync(id);
             return Ok(contact);
+        }
+
+        [HttpGet("{id:Guid}/byUserId")]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<List<ContactDto>> GetByUserIdAsync(string id)
+        {
+            return await _contactService.GetByUserIdAsync(id);
         }
 
         [HttpGet]

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactList.Database.Migrations
 {
     [DbContext(typeof(ContactListContext))]
-    [Migration("20220726152346_AddRole")]
-    partial class AddRole
+    [Migration("20220727110339_AddRoleAdmin")]
+    partial class AddRoleAdmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -127,8 +127,9 @@ namespace ContactList.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -164,10 +165,17 @@ namespace ContactList.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e8ae827d-bff4-4f27-8855-ac25d1523cf0",
-                            ConcurrencyStamp = "48613919-886a-450d-9a01-ae5efe763b4d",
+                            Id = "56ae7003-cb7d-4c17-88f8-f4a3345343e3",
+                            ConcurrencyStamp = "5032ac37-efc7-488f-bfca-1a4411f15251",
                             Name = "User",
                             NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "0797daaa-8e06-461e-a4e8-c0fe63ca58fb",
+                            ConcurrencyStamp = "6257ea55-02d5-44b6-bbdd-c7bca3f14371",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 

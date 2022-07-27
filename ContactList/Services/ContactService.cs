@@ -20,7 +20,12 @@ namespace ContactList.Services
         {
             return await _contactRepository.GetByIdAsync(id);
         }
-        public async Task<List<ContactDto>> GetAllAsync()
+        public async Task<List<ContactDto>> GetByUserIdAsync(string userId)
+        {
+            return await _contactRepository.GetByUserIdAsync(userId);
+        }
+
+        public async Task<List<ContactDisplayListDto>> GetAllAsync()
         {
             return await _contactRepository.GetAllAsync();
         }

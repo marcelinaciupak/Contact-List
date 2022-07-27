@@ -12,7 +12,7 @@ namespace ContactList.Database
 
         public ContactListContext(DbContextOptions<ContactListContext> options) : base(options)
         {
-              
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -20,12 +20,18 @@ namespace ContactList.Database
             base.OnModelCreating(builder);
 
             builder.Entity<IdentityRole>().HasData(
-            new IdentityRole
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = "User",
-                NormalizedName = "USER"
-            });
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "User",
+                    NormalizedName = "USER"
+                },
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                });
         }
     }
 }

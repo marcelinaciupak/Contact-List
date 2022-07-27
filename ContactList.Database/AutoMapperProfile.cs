@@ -9,6 +9,7 @@ namespace ContactList.Database
         public AutoMapperProfile()
         {
             CreateMap<Contact, ContactDto>().ReverseMap();
+            CreateMap<Contact, ContactDisplayListDto>().ReverseMap();
             CreateMap<ApplicationUser, CreateApplicationUserDto>().ReverseMap();
             CreateMap<ApplicationUser, LoginApplicationUserDto>().ReverseMap();
         }
