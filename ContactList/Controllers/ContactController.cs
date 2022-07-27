@@ -8,7 +8,7 @@ namespace ContactList.Controllers
     [Route("[controller]")]
     [ApiController]
 
-    public class ContactController : Controller
+    public class ContactController : ControllerBase
     {
         private readonly IContactService _contactService;
 
@@ -42,7 +42,6 @@ namespace ContactList.Controllers
         }
 
         [HttpGet("{id:Guid}/byUserId")]
-        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
