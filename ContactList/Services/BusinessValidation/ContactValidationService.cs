@@ -1,5 +1,6 @@
 ﻿using ContactList.Domain.Models;
 using ContactList.Domain.Repositories;
+using ContactList.Exceptions;
 
 namespace ContactList.Services.BusinessValidation
 {
@@ -25,7 +26,7 @@ namespace ContactList.Services.BusinessValidation
 
             if (contact != null)
             {
-                throw new Exception($"Contact {contactDto.FirstName} {contactDto.LastName} already exists");
+                throw new BusinessException($"Contact {contactDto.FirstName} {contactDto.LastName} already exists");
             }
         }
 
@@ -35,7 +36,7 @@ namespace ContactList.Services.BusinessValidation
 
             if (contact != null)
             {
-                throw new Exception($"Contact with phone: {phone} already exists");
+                throw new BusinessException($"Contact with phone: {phone} already exists");
             }
         }
 
@@ -45,7 +46,7 @@ namespace ContactList.Services.BusinessValidation
 
             if (contact != null)
             {
-                throw new Exception($"Contact with email: {email} already exists");
+                throw new BusinessException($"Contact with email: {email} already exists");
             }
         }
     }

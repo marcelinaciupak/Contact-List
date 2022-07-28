@@ -1,6 +1,7 @@
 using ContactList;
 using ContactList.Database;
 using ContactList.Database.Models;
+using ContactList.MIddlewares;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = true;
 });
 
+builder.Services.AddScoped<ErrorHandlerMiddleware>();
 builder.Services.RegisterServices();
 builder.Services.RegisterRepositories();
 builder.Services.RegisterValidators();
@@ -63,6 +65,8 @@ if (!app.Environment.IsDevelopment())
 app.UseSwaggerUI();
 
 app.UseSwagger(x => x.SerializeAsV2 = true);
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

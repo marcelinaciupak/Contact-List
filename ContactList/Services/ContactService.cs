@@ -1,5 +1,6 @@
 ﻿using ContactList.Domain.Models;
 using ContactList.Domain.Repositories;
+using ContactList.Exceptions;
 using ContactList.Services.BusinessValidation;
 
 namespace ContactList.Services
@@ -23,7 +24,11 @@ namespace ContactList.Services
         }
         public async Task<ContactDto> GetByIdAsync(int id)
         {
-            return await _contactRepository.GetByIdAsync(id);
+            var result = await _contactRepository.GetByIdAsync(id);
+            if (result == null)
+                throw new NotFoundException("Contact not found");
+
+            return result;
         }
         public async Task<List<ContactDto>> GetByUserIdAsync(string userId)
         {
@@ -39,12 +44,20 @@ namespace ContactList.Services
         {
             await _contactValidationService.ValidateContact(contactDto);
 
-            return await _contactRepository.UpdateAsync(contactDto);
+            var result = await _contactRepository.UpdateAsync(contactDto);
+            if (result == null)
+                throw new NotFoundException("Contact not found");
+
+            return result;
         }
 
         public async Task<ContactDto> RemoveAsync(int id)
         {
-            return await _contactRepository.RemoveAsync(id);
+            var result = await _contactRepository.RemoveAsync(id);
+            if (result == null)
+                throw new NotFoundException("Contact not found");
+
+            return result;
         }
     }
 }
