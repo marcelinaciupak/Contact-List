@@ -1,6 +1,10 @@
 ﻿using ContactList.Database.Repositories;
+using ContactList.Domain.Models;
+using ContactList.Domain.Models.Validators;
 using ContactList.Domain.Repositories;
 using ContactList.Services;
+using ContactList.Services.BusinessValidation;
+using FluentValidation;
 
 namespace ContactList
 {
@@ -8,17 +12,18 @@ namespace ContactList
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<IContactService, ContactService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IContactValidationService, ContactValidationService>();
         }
 
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
         }
 
         public static void RegisterValidators(this IServiceCollection services)
         {
-
+            services.AddTransient<IValidator<ContactDto>, ContactDtoValidator>();
         }
 
     }

@@ -1,19 +1,24 @@
 ﻿using ContactList.Domain.Models;
 using ContactList.Domain.Repositories;
+using ContactList.Services.BusinessValidation;
 
 namespace ContactList.Services
 {
     public class ContactService : IContactService
     {
         private readonly IContactRepository _contactRepository;
+        private readonly IContactValidationService _contactValidationService;
 
-        public ContactService(IContactRepository contactRepository)
+        public ContactService(IContactRepository contactRepository, IContactValidationService contactValidationService)
         {
             _contactRepository = contactRepository;
+            _contactValidationService = contactValidationService;
         }
 
         public async Task<ContactDto> CreateAsync(ContactDto contactDto)
         {
+            await _contactValidationService.ValidateContact(contactDto);
+
             return await _contactRepository.CreateAsync(contactDto);
         }
         public async Task<ContactDto> GetByIdAsync(int id)
@@ -32,6 +37,8 @@ namespace ContactList.Services
 
         public async Task<ContactDto> UpdateAsync(ContactDto contactDto)
         {
+            await _contactValidationService.ValidateContact(contactDto);
+
             return await _contactRepository.UpdateAsync(contactDto);
         }
 

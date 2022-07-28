@@ -28,7 +28,7 @@ namespace ContactList.Database.Repositories
 
         public async Task<ContactDto> GetByIdAsync(int id)
         {
-            var contact = await _context.Contacts.Where(x => x.Id == id).SingleOrDefaultAsync();
+            var contact = await _context.Contacts.SingleOrDefaultAsync(x => x.Id == id);
 
             return _mapper.Map<ContactDto>(contact);
         }
@@ -38,6 +38,26 @@ namespace ContactList.Database.Repositories
             var contacts = await _context.Contacts.Where(x => x.UserId == userId).ToListAsync();
 
             return _mapper.Map<List<ContactDto>>(contacts);
+        }
+
+        public async Task<ContactDto> GetByFullName(ContactDto contactDto)
+        {
+            var contact = await _context.Contacts.Where(x => x.LastName.ToUpper() == contactDto.LastName.ToUpper())
+                                                  .FirstOrDefaultAsync(x => x.FirstName.ToUpper() == contactDto.FirstName.ToUpper());
+
+            return _mapper.Map<ContactDto>(contact);
+        }
+
+        public async Task<ContactDto> GetByPhone(string phone)
+        {
+            var contact = await _context.Contacts.FirstOrDefaultAsync(x => x.Phone == phone);
+            return _mapper.Map<ContactDto>(contact);
+        }
+
+        public async Task<ContactDto> GetByEmail(string email)
+        {
+            var contact = await _context.Contacts.FirstOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
+            return _mapper.Map<ContactDto>(contact);
         }
 
         public async Task<List<ContactDisplayListDto>> GetAllAsync()

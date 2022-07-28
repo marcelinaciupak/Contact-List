@@ -1,8 +1,10 @@
 using ContactList;
 using ContactList.Database;
 using ContactList.Database.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper((config) => { }, AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+                .AddFluentValidation(options =>
+                {
+                    options.ImplicitlyValidateChildProperties = true;
+                    options.ImplicitlyValidateRootCollectionElements = true;
+                    options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                });
+
 
 builder.Services.AddDbContext<ContactListContext>(options =>
 {
