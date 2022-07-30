@@ -5,9 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactList", "ContactList\ContactList.csproj", "{A2540D70-27C4-4781-B82E-09B7C121DD09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactList.Database", "ContactList.Database\ContactList.Database.csproj", "{09C2D52A-B59B-4F6D-9AAD-43905CA5DC1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactList.Database", "ContactList.Database\ContactList.Database.csproj", "{09C2D52A-B59B-4F6D-9AAD-43905CA5DC1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactList.Domain", "ContactList.Domain\ContactList.Domain.csproj", "{B0B9CB60-A859-4A7A-9202-3AABF8E152A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactList.Domain", "ContactList.Domain\ContactList.Domain.csproj", "{B0B9CB60-A859-4A7A-9202-3AABF8E152A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactList.Tests", "ContactList.Tests\ContactList.Tests.csproj", "{D81CDD96-D70B-40F7-84F8-E7A6728F92C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B0B9CB60-A859-4A7A-9202-3AABF8E152A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0B9CB60-A859-4A7A-9202-3AABF8E152A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0B9CB60-A859-4A7A-9202-3AABF8E152A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D81CDD96-D70B-40F7-84F8-E7A6728F92C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81CDD96-D70B-40F7-84F8-E7A6728F92C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81CDD96-D70B-40F7-84F8-E7A6728F92C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81CDD96-D70B-40F7-84F8-E7A6728F92C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

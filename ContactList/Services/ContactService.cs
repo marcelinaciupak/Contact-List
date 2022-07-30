@@ -32,6 +32,7 @@ namespace ContactList.Services
         }
         public async Task<List<ContactDto>> GetByUserIdAsync(string userId)
         {
+            //user exisist?
             return await _contactRepository.GetByUserIdAsync(userId);
         }
 
